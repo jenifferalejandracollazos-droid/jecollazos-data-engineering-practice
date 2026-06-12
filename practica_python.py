@@ -1,13 +1,10 @@
 import pandas as pd
+
 df = pd.read_csv('transacciones.csv')
 
-retiros = df[df['tipo'] == 'retiro']
+resumen_por_tipo = df.groupby('tipo')['monto'].sum().reset_index()
 
-retiros['monto_usd'] = retiros['monto'] / 4200
+resumen_por_tipo.to_csv('resumen_por_tipo.csv', index=False)
 
-retiros.to_csv('retiros.csv', index=False) 
-
-print('ELT completado')
-print(retiros)
-
-print(retiros.describe())
+print('ETL completado')
+print(resumen_por_tipo)
