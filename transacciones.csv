@@ -1,0 +1,6 @@
+id,cliente_id,monto,tipo
+1,1,500000,retiro
+2,1,200000,consignacion
+3,2,1500000,retiro
+4,3,300000,consignacion
+5,5,800000,retiro
