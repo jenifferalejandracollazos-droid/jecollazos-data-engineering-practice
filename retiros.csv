@@ -1,4 +1,4 @@
-id,cliente_id,monto,tipo
-1,1,500000,retiro
-3,2,1500000,retiro
-5,5,800000,retiro
+id,cliente_id,monto,tipo,monto_usd
+1,1,500000,retiro,119.04761904761905
+3,2,1500000,retiro,357.14285714285717
+5,5,800000,retiro,190.47619047619048

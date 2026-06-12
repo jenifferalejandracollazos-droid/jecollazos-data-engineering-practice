@@ -3,7 +3,9 @@ df = pd.read_csv('transacciones.csv')
 
 retiros = df[df['tipo'] == 'retiro']
 
-retiros.to_csv('retiros.csv, index=False')
+retiros['monto_usd'] = retiros['monto'] / 4200
 
-print('ETL completado')
+retiros.to_csv('retiros.csv', index=False) 
+
+print('ELT completado')
 print(retiros)
