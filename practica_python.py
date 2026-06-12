@@ -9,3 +9,5 @@ retiros.to_csv('retiros.csv', index=False)
 
 print('ELT completado')
 print(retiros)
+
+print(retiros.describe())
