@@ -1,10 +1,18 @@
 import pandas as pd
 
-df = pd.read_csv('transacciones.csv')
+clientes = {
+    "nombre": ["Ana Torres", "Carlos Ruiz", "María López", "Pedro Gómez", "Lucía Herrera"],
+    "ciudad": ["Cali", "Bogotá", "Medellín", "Cali", "Bogotá"],
+    "saldo": [1500000, 3200000, 850000, 15000000, 620000]
+}
 
-resumen_por_tipo = df.groupby('tipo')['monto'].sum().reset_index()
+df = pd.DataFrame(clientes)
 
-resumen_por_tipo.to_csv('resumen_por_tipo.csv', index=False)
+media = df["saldo"].mean()
+desviacion = df["saldo"].std()
 
-print('ETL completado')
-print(resumen_por_tipo)
+outliers = df[(df["saldo"] > media + 2*desviacion) | (df["saldo"] < media - 2*desviacion)]
+
+print("Media:", media)
+print("Desviación:", desviacion)
+print(outliers)
