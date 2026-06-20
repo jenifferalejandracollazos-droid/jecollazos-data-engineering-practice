@@ -1,4 +1,6 @@
-SELECT nombre, ciudad, saldo
+SELECT clientes.nombre, COUNT(transacciones.tipo)
 FROM clientes
-WHERE ciudad IN ('Cali', 'Bogotá')
-ORDER BY nombre ASC;
+INNER JOIN transacciones ON clientes.id = transacciones.cliente_id
+GROUP BY clientes.nombre
+HAVING COUNT(transacciones.tipo) > 1
+ORDER BY COUNT(transacciones.tipo);
