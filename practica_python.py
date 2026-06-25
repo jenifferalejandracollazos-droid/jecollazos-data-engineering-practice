@@ -1,15 +1,9 @@
 import pandas as pd
 
-clientes = {
-    "nombre": ["Ana Torres", "Carlos Ruiz", "María López", "Pedro Gómez", "Lucía Herrera"],
-    "ciudad": ["Cali", "Bogotá", "Medellín", "Cali", "Bogotá"],
-    "saldo": [1500000, 3200000, 850000, 4100000, 620000]
-}
+df = pd.read_csv('transacciones.csv')
+df['monto_cop'] = df['monto'] * 1.05
+df.to_csv('transacciones_ajustadas.csv', index=False)
 
-df = pd.DataFrame(clientes)
+print('ETL terminado')
+print(df)
 
-media = df['saldo'].mean()
-desviacion = df['saldo'].std()
-
-print(media)
-print(desviacion)
