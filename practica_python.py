@@ -1,9 +1,7 @@
-import pandas as pd
+import pandas as pd 
 
-df = pd.read_csv('transacciones.csv')
-df['monto_cop'] = df['monto'] * 1.05
-df.to_csv('transacciones_ajustadas.csv', index=False)
+df = pd.read_csv('bank_transactions_data_2_augmented_clean_2.csv')
 
-print('ETL terminado')
-print(df)
+filtro_saldo_promedio = df.groupby('CustomerOccupation')['AccountBalance'].mean()
 
+print(filtro_saldo_promedio)
