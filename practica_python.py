@@ -1,12 +1,17 @@
-import pandas as pd
+import pandas as pd 
 
-df = pd.read_csv('transacciones.csv')
+clientes = [
+    {"id": 1, "nombre": "Ana", "edad": 28, "monto_gastado": 150.50, "activo": True},
+    {"id": 2, "nombre": "Carlos", "edad": 35, "monto_gastado": 420.00, "activo": True},
+    {"id": 3, "nombre": "María", "edad": 42, "monto_gastado": 85.20, "activo": False},
+    {"id": 4, "nombre": "Luis", "edad": 23, "monto_gastado": 210.10, "activo": True},
+    {"id": 5, "nombre": "Elena", "edad": 31, "monto_gastado": 340.00, "activo": False}
+]
 
-retiros = df[df['tipo'] == 'retiro']
-retiros['monto_usd'] = retiros['monto'] / 4200
-retiros['es_alto'] = retiros['monto'] > 600000
+def promedio_clientes(clientes):
+    df = pd.DataFrame(clientes)
+    promedio = df['monto_gastado'].mean()
+    return round(promedio, 2)
 
-retiros.to_csv('retiros_analizados.csv', index=False)
+print(promedio_clientes(clientes))
 
-print('ETL completado')
-print(retiros)
