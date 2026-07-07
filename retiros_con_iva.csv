@@ -1,0 +1,4 @@
+id,cliente_id,monto,tipo,monto_con_iva
+1,1,500000,retiro,595000.0
+3,2,1500000,retiro,1785000.0
+5,5,800000,retiro,952000.0

@@ -1,31 +1,12 @@
-1.
-SELECT nombre, saldo 
-FROM clientes
-WHERE saldo > (SELECT AVG(saldo) FROM clientes)
-ORDER BY saldo DESC;
+import pandas as pd
 
-2.
-SELECT cliente_id, COUNT(tipo)
-FROM transacciones
-GROUP BY cliente_id
-ORDER BY COUNT(tipo) DESC;
+df = pd.read_csv('transacciones.csv')
 
-3. 
-SELECT clientes.nombre, SUM(transacciones.monto)
-FROM clientes 
-INNER JOIN transacciones ON clientes.id = transacciones.cliente_id
-GROUP BY clientes.nombre
-HAVING SUM(transacciones.monto) > 500000
+retiros = df[df['tipo'] == 'retiro']
+retiros['monto_usd'] = retiros['monto'] / 4200
+retiros['es_alto'] = retiros['monto'] > 600000
 
-4. 
-SELECT clientes.id, transacciones.tipo
-FROM clientes
-INNER JOIN transacciones ON clientes.id = transacciones.cliente_id
-WHERE clientes.id NOT IN ('transacciones')
+retiros.to_csv('retiros_analizados.csv', index=False)
 
-5.
-SELECT clientes.nombre, clientes.ciudad, transacciones.monto
-FROM clientes
-INNER JOIN transacciones ON clientes.id = transacciones.cliente_id 
-WHERE clientes.ciudad = 'Bogotá'
-GROUP BY clientes.nombre
+print('ETL completado')
+print(retiros)
